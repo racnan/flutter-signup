@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../components/GradientButton.dart';
@@ -23,7 +24,7 @@ class SignUpScreen extends StatelessWidget {
               //color: Colors.blue,
               margin: EdgeInsets.symmetric(vertical: 10),
               child: MyFormField()),
-          lowerText(screenWidth),
+          lowerText(screenWidth, context),
           // SizedBox(
           //   height: screenHeight * 0.1,
           // )
@@ -32,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  Widget lowerText(double screenWidth) {
+  Widget lowerText(double screenWidth, BuildContext context) {
     return Container(
       child: RichText(
           text: TextSpan(children: [
@@ -45,7 +46,9 @@ class SignUpScreen extends StatelessWidget {
             style: TextStyle(
                 fontSize: screenWidth * 0.04,
                 color: Colors.blueGrey,
-                fontWeight: FontWeight.bold))
+                fontWeight: FontWeight.bold),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () => {Navigator.pop(context)})
       ])),
     );
   }
